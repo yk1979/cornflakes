@@ -1,3 +1,4 @@
+// TOD0 型で縛る
 module.exports = [
   {
     request: {

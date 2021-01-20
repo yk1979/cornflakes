@@ -6,11 +6,12 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "agreed": "npx agreed-server --path agreed/index.ts --port 3010"
   },
   "license": "ISC",
   "homepage": "https://github.com/yk1979/cornflakes#readme",
   "dependencies": {
+    "axios": "0.21.1",
     "chart.js": "2.9.4",
     "next": "10.0.5",
     "react": "17.0.1",
