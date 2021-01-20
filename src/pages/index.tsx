@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { GraphData } from "../../agreed/types";
 import { Graph } from "../components/Graph";
 
 type Props = {
@@ -19,7 +20,7 @@ export default IndexPage;
 export const getServerSideProps = async () => {
   // TODO fix
   const API_ENDPOINT = "http://localhost:3010";
-  const response = await axios.get(`${API_ENDPOINT}/pchan`);
+  const response = await axios.get<GraphData>(`${API_ENDPOINT}/pchan`);
   const graphData = response.data;
 
   // TODO エラー処理追加
@@ -46,7 +47,7 @@ export const getServerSideProps = async () => {
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgba(255,99,132,1)",
-        data: Object.values(graphData.skills).map((item: any) => item.summary),
+        data: Object.values(graphData.skills).map((item) => item.summary),
       },
     ],
   };
