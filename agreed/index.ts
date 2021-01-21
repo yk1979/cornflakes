@@ -28,38 +28,48 @@ const api: Api = {
     },
     body: {
       name: "pchan",
-      skills: {
-        "HTML/CSS": {
+      skills: [
+        {
+          key: "HTML/CSS",
           summary: 100,
         },
-        "JS/TS": {
+        {
+          key: "JS/TS",
           summary: 90,
         },
-        React: {
+        {
+          key: "React",
           summary: 91,
         },
-        "Node.js": {
+        {
+          key: "Node.js",
           summary: 83,
         },
-        AMP: {
+        {
+          key: "AMP",
           summary: 100,
         },
-        "CI/CD": {
+        {
+          key: "CI/CD",
           summary: 75,
         },
-        Test: {
+        {
+          key: "Test",
           summary: 100,
         },
-        Backend: {
+        {
+          key: "Backend",
           summary: 60,
         },
-        GCP: {
+        {
+          key: "GCP",
           summary: 60,
         },
-        SEO: {
+        {
+          key: "SEO",
           summary: 100,
         },
-      },
+      ],
     },
   },
 };

@@ -2,8 +2,7 @@
 export type GraphData = {
   name: string;
   skills: {
-    [key: string]: {
-      summary: number;
-    };
-  };
+    key: string;
+    summary: number;
+  }[];
 };

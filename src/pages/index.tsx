@@ -27,7 +27,7 @@ export const getServerSideProps = async () => {
 
   // TODO: モック箇所を修正する
   const data = {
-    labels: Object.keys(graphData.skills),
+    labels: graphData.skills.map(({ key }) => key),
     datasets: [
       {
         label: "さいしょのつよさ",
@@ -47,7 +47,7 @@ export const getServerSideProps = async () => {
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgba(255,99,132,1)",
-        data: Object.values(graphData.skills).map((item) => item.summary),
+        data: graphData.skills.map(({ summary }) => summary),
       },
     ],
   };
