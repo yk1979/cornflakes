@@ -2,16 +2,37 @@ import axios from "axios";
 import React from "react";
 import { GraphData } from "../../agreed/types";
 import { Graph } from "../components/Graph";
+import Table from "../components/Table";
 
 type Props = {
   name: string;
   data: React.ComponentProps<typeof Graph>["data"];
 };
 
+// mock data
+const tableData = [
+  {
+    category: "HTML/CSS",
+    text: "規約に従ってデザインデータを正しく再現できる",
+    score: 1 as const,
+  },
+  {
+    category: "HTML/CSS",
+    text: "コーディング規約を作ることができる",
+    score: 1 as const,
+  },
+  {
+    category: "JS/TS",
+    text: "Object や Array を活用してデータを表現したり操作できる",
+    score: 1 as const,
+  },
+];
+
 const IndexPage: React.FC<Props> = ({ name, data }: Props) => (
   <div>
     <h1>つよさをみる（{name}）</h1>
     <Graph data={data} />
+    <Table data={tableData} />
   </div>
 );
 
