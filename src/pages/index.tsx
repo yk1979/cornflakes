@@ -1,37 +1,19 @@
 import axios from "axios";
 import React from "react";
-import { GraphData } from "../../agreed/types";
+import { SkillData } from "../../agreed/types";
 import { Graph } from "../components/Graph";
 import Table from "../components/Table";
 
 type Props = {
   name: string;
-  data: React.ComponentProps<typeof Graph>["data"];
+  graphData: React.ComponentProps<typeof Graph>["data"];
+  tableData: React.ComponentProps<typeof Table>["data"];
 };
 
-// mock data
-const tableData = [
-  {
-    category: "HTML/CSS",
-    text: "規約に従ってデザインデータを正しく再現できる",
-    score: 1 as const,
-  },
-  {
-    category: "HTML/CSS",
-    text: "コーディング規約を作ることができる",
-    score: 1 as const,
-  },
-  {
-    category: "JS/TS",
-    text: "Object や Array を活用してデータを表現したり操作できる",
-    score: 1 as const,
-  },
-];
-
-const IndexPage: React.FC<Props> = ({ name, data }: Props) => (
+const IndexPage: React.FC<Props> = ({ name, graphData, tableData }: Props) => (
   <div>
     <h1>つよさをみる（{name}）</h1>
-    <Graph data={data} />
+    <Graph data={graphData} />
     <Table data={tableData} />
   </div>
 );
@@ -41,14 +23,14 @@ export default IndexPage;
 export const getServerSideProps = async () => {
   // TODO fix
   const API_ENDPOINT = "http://localhost:3010";
-  const response = await axios.get<GraphData>(`${API_ENDPOINT}/pchan`);
-  const graphData = response.data;
+  const response = await axios.get<SkillData>(`${API_ENDPOINT}/pchan`);
+  const data = response.data;
 
   // TODO エラー処理追加
 
   // TODO: モック箇所を修正する
-  const data = {
-    labels: graphData.skills.map(({ key }) => key),
+  const graphData = {
+    labels: data.skills.map(({ key }) => key),
     datasets: [
       {
         label: "さいしょのつよさ",
@@ -68,15 +50,24 @@ export const getServerSideProps = async () => {
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgba(255,99,132,1)",
-        data: graphData.skills.map(({ summary }) => summary),
+        data: data.skills.map(({ summary }) => summary),
       },
     ],
   };
 
+  const tableData = data.skills.flatMap((skill) =>
+    skill.detail.map(({ text, score }) => ({
+      category: skill.key,
+      text,
+      score,
+    }))
+  );
+
   return {
     props: {
-      name: graphData.name,
-      data,
+      name: data.name,
+      graphData,
+      tableData,
     },
   };
 };
