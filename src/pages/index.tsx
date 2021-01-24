@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { SkillData } from "../../agreed/types";
 import { Graph } from "../components/Graph";
+import Layout from "../components/Layout";
 import Table from "../components/Table";
 
 type Props = {
@@ -11,11 +12,11 @@ type Props = {
 };
 
 const IndexPage: React.FC<Props> = ({ name, graphData, tableData }: Props) => (
-  <div>
-    <h1>つよさをみる（{name}）</h1>
-    <Graph data={graphData} />
+  <Layout>
+    <h1 className="text-2xl font-semibold">つよさをみる（{name}）</h1>
+    <Graph className="mt-6" data={graphData} />
     <Table data={tableData} />
-  </div>
+  </Layout>
 );
 
 export default IndexPage;
