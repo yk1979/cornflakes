@@ -1,4 +1,5 @@
 import axios from "axios";
+import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 import { SkillData } from "../../agreed/types";
 import { Graph } from "../components/Graph";
@@ -11,7 +12,7 @@ type Props = {
   tableData: React.ComponentProps<typeof Table>["data"];
 };
 
-const IndexPage: React.FC<Props> = ({ name, graphData, tableData }: Props) => (
+const IndexPage: NextPage<Props> = ({ name, graphData, tableData }) => (
   <Layout>
     <h1 className="text-2xl font-semibold">つよさをみる（{name}）</h1>
     <Graph className="mt-6" data={graphData} />
@@ -21,7 +22,7 @@ const IndexPage: React.FC<Props> = ({ name, graphData, tableData }: Props) => (
 
 export default IndexPage;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   // TODO fix
   const API_ENDPOINT = "http://localhost:3010";
   const response = await axios.get<SkillData>(`${API_ENDPOINT}/pchan`);

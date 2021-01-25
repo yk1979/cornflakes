@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Layout: React.FC<Props> = ({ children }: Props) => (
+const Layout: React.FC<Props> = ({ children }) => (
   <>
     <Header />
     <main className="p-6">{children}</main>

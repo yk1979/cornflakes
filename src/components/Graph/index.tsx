@@ -6,7 +6,7 @@ type Props = {
   data: React.ComponentProps<typeof Radar>["data"];
 };
 
-export const Graph: React.FC<Props> = ({ className, data }: Props) => (
+export const Graph: React.FC<Props> = ({ className, data }) => (
   <div className={className}>
     <Radar
       data={data}

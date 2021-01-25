@@ -10,7 +10,7 @@ type Props = {
   }[];
 };
 
-const Table: React.FC<Props> = ({ data }: Props) => (
+const Table: React.FC<Props> = ({ data }) => (
   <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mt-6">
     <thead className="bg-gray-50">
       <tr>

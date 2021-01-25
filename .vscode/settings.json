@@ -6,6 +6,7 @@
     "chartjs",
     "csrf",
     "pchan",
+    "semibold",
     "tailwindcss"
   ]
 }
