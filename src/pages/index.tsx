@@ -31,31 +31,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   // TODO エラー処理追加
 
   // TODO: モック箇所を修正する
-  const graphData = {
-    labels: data.skills.map(({ key }) => key),
-    datasets: [
-      {
-        label: "さいしょのつよさ",
-        backgroundColor: "rgba(179,181,198,0.2)",
-        borderColor: "rgba(179,181,198,1)",
-        pointBackgroundColor: "rgba(179,181,198,1)",
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(179,181,198,1)",
-        data: [100, 70, 55, 67, 67, 25, 100, 20, 20, 60],
-      },
-      {
-        label: "いまのつよさ",
-        backgroundColor: "rgba(255,99,132,0.2)",
-        borderColor: "rgba(255,99,132,1)",
-        pointBackgroundColor: "rgba(255,99,132,1)",
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(255,99,132,1)",
-        data: data.skills.map(({ summary }) => summary),
-      },
-    ],
-  };
+  const graphData = data.skills.map((skill) => ({
+    label: skill.key,
+    score: skill.summary,
+  }));
 
   const tableData = data.skills.flatMap((skill) =>
     skill.detail.map(({ text, score }) => ({
