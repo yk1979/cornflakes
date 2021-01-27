@@ -12,7 +12,7 @@ type Props = {
 
 const Table: React.FC<Props> = ({ data }) => (
   <div className="sm:rounded-lg mt-6 shadow overflow-x-scroll">
-    <table className="divide-y divide-gray-200 overflow-hidden">
+    <table className="divide-y divide-gray-200 overflow-hidden w-full">
       <thead className="bg-gray-50">
         <tr>
           {headers.map((header, i) => (
