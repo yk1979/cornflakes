@@ -1,5 +1,6 @@
 import { Radar } from "react-chartjs-2";
 import React from "react";
+import { rgba } from "polished";
 
 type Props = {
   className?: string;
@@ -9,6 +10,9 @@ type Props = {
   }[];
 };
 
+// TODO tailwind のカラーパレットを定数として利用できないか？
+const orange = "#F59E0B"; // colors.amber["500"]
+
 export const Graph: React.FC<Props> = ({ className, data }) => (
   <div className={className}>
     <Radar
@@ -17,12 +21,12 @@ export const Graph: React.FC<Props> = ({ className, data }) => (
         datasets: [
           {
             label: "いまのつよさ",
-            backgroundColor: "rgba(255,99,132,0.2)",
-            borderColor: "rgba(255,99,132,1)",
-            pointBackgroundColor: "rgba(255,99,132,1)",
+            backgroundColor: rgba(orange, 0.2),
+            borderColor: orange,
+            pointBackgroundColor: orange,
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(255,99,132,1)",
+            pointHoverBorderColor: orange,
             data: data.map(({ score }) => score),
           },
         ],
