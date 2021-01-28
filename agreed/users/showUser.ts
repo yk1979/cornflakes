@@ -30,7 +30,7 @@ export const api: Api = {
       name: "pchan",
       skills: [
         {
-          key: "HTML/CSS",
+          category: "HTML/CSS",
           summary: 100,
           detail: [
             { text: "規約に従ってデザインデータを正しく再現できる", score: 1 },
@@ -50,7 +50,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "JS/TS",
+          category: "JS/TS",
           summary: 90,
           detail: [
             {
@@ -93,13 +93,13 @@ export const api: Api = {
             },
             {
               text:
-                "sevice workerを使ってオフラインでもキャッシュを用いてページをユーザーに見せることができる",
+                "service workerを使ってオフラインでもキャッシュを用いてページをユーザーに見せることができる",
               score: 0,
             },
           ],
         },
         {
-          key: "React",
+          category: "React",
           summary: 91,
           detail: [
             {
@@ -145,7 +145,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "Node.js",
+          category: "Node.js",
           summary: 83,
           detail: [
             {
@@ -174,7 +174,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "AMP",
+          category: "AMP",
           summary: 100,
           detail: [
             { text: "amp validなコードが書ける", score: 1 },
@@ -196,7 +196,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "CI/CD",
+          category: "CI/CD",
           summary: 75,
           detail: [
             { text: "CI /CDのタスクの内容を書き換えたことがある", score: 0 },
@@ -218,7 +218,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "Test",
+          category: "Test",
           summary: 100,
           detail: [
             {
@@ -235,7 +235,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "Backend",
+          category: "Backend",
           summary: 60,
           detail: [
             {
@@ -260,7 +260,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "GCP",
+          category: "GCP",
           summary: 60,
           detail: [
             {
@@ -281,7 +281,7 @@ export const api: Api = {
           ],
         },
         {
-          key: "SEO",
+          category: "SEO",
           summary: 100,
           detail: [
             { text: "amp-gtmで、GoogleAnalyticsに情報を送信できる", score: 0 },

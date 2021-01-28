@@ -30,15 +30,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   // TODO エラー処理追加
 
-  // TODO: モック箇所を修正する
   const graphData = data.skills.map((skill) => ({
-    label: skill.key,
+    label: skill.category,
     score: skill.summary,
   }));
 
   const tableData = data.skills.flatMap((skill) =>
     skill.detail.map(({ text, score }) => ({
-      category: skill.key,
+      category: skill.category,
       text,
       score,
     }))

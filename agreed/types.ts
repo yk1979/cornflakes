@@ -2,7 +2,7 @@
 export type SkillData = {
   name: string;
   skills: {
-    key: string;
+    category: string;
     summary: number;
     detail: {
       text: string;
