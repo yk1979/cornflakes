@@ -1,16 +1,17 @@
 import React from "react";
 
-const headers = ["category", "description", "your score"];
-
 type Props = {
+  headers: string[];
   data: {
     category: string;
     text: string;
-    score: 0 | 1;
+    // TODO fix
+    score: any;
   }[];
 };
 
-const Table: React.FC<Props> = ({ data }) => (
+// TODO: 構造を変えてスキルチェック用のテーブルも作れるようにする
+const Table: React.FC<Props> = ({ headers, data }) => (
   <div className="sm:rounded-lg mt-6 shadow overflow-x-scroll">
     <table className="divide-y divide-gray-200 overflow-hidden w-full">
       <thead className="bg-gray-50">

@@ -16,7 +16,10 @@ const IndexPage: NextPage<Props> = ({ name, graphData, tableData }) => (
   <Layout>
     <h1 className="text-2xl font-semibold">つよさをみる（{name}）</h1>
     <Graph className="mt-6" data={graphData} />
-    <Table data={tableData} />
+    <Table
+      headers={["category", "description", "your score"]}
+      data={tableData}
+    />
   </Layout>
 );
 
