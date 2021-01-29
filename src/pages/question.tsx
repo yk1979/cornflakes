@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import React from "react";
 import Layout from "../components/Layout";
 import Table from "../components/Table";
+import TableItem from "../components/Table/TableItem";
 
 // mock data
 const mock = [
@@ -33,19 +34,34 @@ const mock = [
   },
 ];
 
+// TODO fix
+const data = mock.flatMap((data) =>
+  data.questions.map((d) => ({
+    category: data.category,
+    text: d,
+    score: "チェックボックスにしたい",
+  }))
+);
+
 const QuestionPage: NextPage = () => (
   <Layout>
     <h1 className="text-2xl font-semibold">スキルチェック</h1>
-    <Table
-      headers={["category", "description", "check"]}
-      data={mock.flatMap((data) =>
-        data.questions.map((d) => ({
-          category: data.category,
-          text: d,
-          score: "チェックボックスにしたい",
-        }))
-      )}
-    />
+    <Table headers={["category", "description", "check"]}>
+      {data.map((d, i) => (
+        <tr key={i}>
+          <TableItem className="px-6 py-4 whitespace-nowrap">
+            {d.category}
+          </TableItem>
+          <TableItem className="px-6 py-4 whitespace-nowrap">
+            {d.text}
+          </TableItem>
+          <TableItem className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {/* TODO スタイル調整 */}
+            <input type="checkbox" />
+          </TableItem>
+        </tr>
+      ))}
+    </Table>
   </Layout>
 );
 
