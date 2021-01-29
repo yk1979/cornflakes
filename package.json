@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@agreed/cli": "5.1.10",
-    "@agreed/typed": "5.1.10",
+    "@agreed/typed": "5.2.0",
     "@types/chart.js": "2.9.30",
     "@types/node": "14.14.22",
     "@types/react": "17.0.0",
