@@ -39,29 +39,39 @@ const data = mock.flatMap((data) =>
   data.questions.map((d) => ({
     category: data.category,
     text: d,
-    score: "チェックボックスにしたい",
   }))
 );
 
 const QuestionPage: NextPage = () => (
   <Layout>
     <h1 className="text-2xl font-semibold">スキルチェック</h1>
-    <Table headers={["category", "description", "check"]}>
-      {data.map((d, i) => (
-        <tr key={i}>
-          <TableItem className="px-6 py-4 whitespace-nowrap">
-            {d.category}
-          </TableItem>
-          <TableItem className="px-6 py-4 whitespace-nowrap">
-            {d.text}
-          </TableItem>
-          <TableItem className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {/* TODO スタイル調整 */}
-            <input type="checkbox" />
-          </TableItem>
-        </tr>
-      ))}
-    </Table>
+    {/* TODO fix */}
+    <form>
+      <Table headers={["category", "description", "check"]}>
+        {data.map((d, i) => (
+          <tr key={i}>
+            <TableItem className="px-6 py-4 whitespace-nowrap">
+              {d.category}
+            </TableItem>
+            <TableItem className="px-6 py-4 whitespace-nowrap">
+              {d.text}
+            </TableItem>
+            <TableItem className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {/* TODO スタイル調整 */}
+              <input type="checkbox" />
+            </TableItem>
+          </tr>
+        ))}
+      </Table>
+      {/* TODO コンポーネント化できそうかな */}
+      <button
+        type="submit"
+        className="block w-64 px-8 py-4 mt-6 mx-auto rounded bg-yellow-400 text-lg
+        font-bold"
+      >
+        送信
+      </button>
+    </form>
   </Layout>
 );
 
