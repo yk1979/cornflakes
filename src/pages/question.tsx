@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
+import Button from "../components/Button";
 import Layout from "../components/Layout";
 import Table from "../components/Table";
 import TableItem from "../components/Table/TableItem";
@@ -71,14 +72,29 @@ const QuestionPage: NextPage = () => {
             </tr>
           ))}
         </Table>
-        {/* TODO コンポーネント化できそうかな */}
-        <button
-          type="submit"
-          className="block w-64 px-8 py-4 mt-6 mx-auto rounded bg-yellow-400 text-lg
-        font-bold"
-        >
-          送信
-        </button>
+        {dataIndex < data.length - 1 && (
+          <Button
+            theme="primary"
+            type="button"
+            onClick={() => handleChangeQuestions(1)}
+          >
+            次へ
+          </Button>
+        )}
+        {dataIndex !== 0 && (
+          <Button
+            theme="sub"
+            type="button"
+            onClick={() => handleChangeQuestions(-1)}
+          >
+            戻る
+          </Button>
+        )}
+        {dataIndex + 1 === data.length && (
+          <Button theme="primary" type="submit">
+            送信
+          </Button>
+        )}
       </form>
     </Layout>
   );
