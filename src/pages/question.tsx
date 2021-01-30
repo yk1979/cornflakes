@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
 import Table from "../components/Table";
@@ -42,37 +43,45 @@ const data = mock.flatMap((data) =>
   }))
 );
 
-const QuestionPage: NextPage = () => (
-  <Layout>
-    <h1 className="text-2xl font-semibold">スキルチェック</h1>
-    {/* TODO fix */}
-    <form>
-      <Table headers={["category", "description", "check"]}>
-        {data.map((d, i) => (
-          <tr key={i}>
-            <TableItem className="px-6 py-4 whitespace-nowrap">
-              {d.category}
-            </TableItem>
-            <TableItem className="px-6 py-4 whitespace-nowrap">
-              {d.text}
-            </TableItem>
-            <TableItem className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {/* TODO スタイル調整 */}
-              <input type="checkbox" />
-            </TableItem>
-          </tr>
-        ))}
-      </Table>
-      {/* TODO コンポーネント化できそうかな */}
-      <button
-        type="submit"
-        className="block w-64 px-8 py-4 mt-6 mx-auto rounded bg-yellow-400 text-lg
+const QuestionPage: NextPage = () => {
+  const router = useRouter();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("p-chan");
+    router.push("/user/p-chan");
+  };
+  return (
+    <Layout>
+      <h1 className="text-2xl font-semibold">スキルチェック</h1>
+      {/* TODO fix */}
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <Table headers={["category", "description", "check"]}>
+          {data.map((d, i) => (
+            <tr key={i}>
+              <TableItem className="px-6 py-4 whitespace-nowrap">
+                {d.category}
+              </TableItem>
+              <TableItem className="px-6 py-4 whitespace-nowrap">
+                {d.text}
+              </TableItem>
+              <TableItem className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {/* TODO スタイル調整 */}
+                <input type="checkbox" />
+              </TableItem>
+            </tr>
+          ))}
+        </Table>
+        {/* TODO コンポーネント化できそうかな */}
+        <button
+          type="submit"
+          className="block w-64 px-8 py-4 mt-6 mx-auto rounded bg-yellow-400 text-lg
         font-bold"
-      >
-        送信
-      </button>
-    </form>
-  </Layout>
-);
+        >
+          送信
+        </button>
+      </form>
+    </Layout>
+  );
+};
 
 export default QuestionPage;
