@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
 import Table from "../components/Table";
@@ -16,21 +16,49 @@ type Props = {
 
 const QuestionPage: NextPage<Props> = ({ data }) => {
   const router = useRouter();
+
   const [dataIndex, setDataIndex] = useState(0);
   const currentData = data[dataIndex];
 
-  // TODO ブラウザの戻る/進むイベントを検知していい感じにしたい
+  const initialScores = data.map((d) => ({
+    category: d.category,
+    score: d.text.map(() => 0),
+  }));
+  const reducer: React.Reducer<
+    {
+      category: string;
+      score: number[];
+    }[],
+    { payload: number[] }
+  > = (state, action) => {
+    const [targetCategoryIndex, targetTextIndex] = action.payload;
+    const nextState = [...state];
+    // ターゲットのスコアは0か1のみなので、現在のスコア-1の絶対値は必ず現在のスコアの反転になる
+    nextState[targetCategoryIndex].score[targetTextIndex] = Math.abs(
+      nextState[targetCategoryIndex].score[targetTextIndex] - 1
+    );
+    return nextState;
+  };
+  const [state, dispatch] = useReducer(reducer, initialScores);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const payload = e.target.id.split("-").map((t) => Number(t));
+    dispatch({ payload });
+  };
+
   const handleChangeQuestions = (n: 1 | -1) => {
-    if (n > 0) {
-      window.history.pushState(null, String(dataIndex + n), "/question");
-    } else {
-      window.history.back();
-    }
+    // TODO ブラウザの戻る/進むイベントを検知していい感じにしたい（下の処理じゃダメだった）
+    // if (n > 0) {
+    //   window.history.pushState(null, String(dataIndex + n), "/question");
+    // } else {
+    //   window.history.back();
+    // }
     setDataIndex(dataIndex + n);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // TODO 中身の実装
     router.push("/user/p-chan");
   };
 
@@ -49,7 +77,12 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
               </TableItem>
               <TableItem className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {/* TODO スタイル調整 */}
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  id={`${dataIndex}-${i}`}
+                  checked={state[dataIndex].score[i] === 1}
+                  onChange={handleInputChange}
+                />
               </TableItem>
             </tr>
           ))}
