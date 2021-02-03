@@ -69,20 +69,23 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
         <Table headers={["category", "description", "check"]}>
           {currentData.text.map((item, i) => (
             <tr key={i}>
-              <TableItem className="px-6 py-4 whitespace-nowrap">
+              <TableItem className="px-6 py-4">
                 {currentData.category}
               </TableItem>
-              <TableItem className="px-6 py-4 whitespace-nowrap">
-                {item}
-              </TableItem>
-              <TableItem className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {/* TODO スタイル調整 */}
-                <input
-                  type="checkbox"
-                  id={`${dataIndex}-${i}`}
-                  checked={state[dataIndex].score[i] === 1}
-                  onChange={handleInputChange}
-                />
+              <TableItem className="px-6 py-4">{item}</TableItem>
+              <TableItem className="text-sm text-gray-500 text-center">
+                <label
+                  htmlFor={`${dataIndex}-${i}`}
+                  className="block p-4 cursor-pointer"
+                >
+                  <input
+                    className="w-5 h-5 rounded cursor-pointer focus:ring-0"
+                    type="checkbox"
+                    id={`${dataIndex}-${i}`}
+                    checked={state[dataIndex].score[i] === 1}
+                    onChange={handleInputChange}
+                  />
+                </label>
               </TableItem>
             </tr>
           ))}
