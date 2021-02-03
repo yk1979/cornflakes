@@ -59,7 +59,7 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO 中身の実装
-    router.push("/user/p-chan");
+    router.push("/");
   };
 
   return (
