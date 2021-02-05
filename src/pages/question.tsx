@@ -46,7 +46,8 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
     dispatch({ payload });
   };
 
-  const handleChangeQuestions = (n: 1 | -1) => {
+  const handleChangeQuestions = (type: "prev" | "next") => {
+    const n = type === "prev" ? -1 : 1;
     // TODO ブラウザの戻る/進むイベントを検知していい感じにしたい（下の処理じゃダメだった）
     // if (n > 0) {
     //   window.history.pushState(null, String(dataIndex + n), "/question");
@@ -94,7 +95,7 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
           <Button
             theme="primary"
             type="button"
-            onClick={() => handleChangeQuestions(1)}
+            onClick={() => handleChangeQuestions("next")}
           >
             次へ
           </Button>
@@ -103,7 +104,7 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
           <Button
             theme="sub"
             type="button"
-            onClick={() => handleChangeQuestions(-1)}
+            onClick={() => handleChangeQuestions("prev")}
           >
             戻る
           </Button>
