@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import Layout from "../components/Layout";
 import Table from "../components/Table";
 import TableItem from "../components/Table/TableItem";
+import { API_BASE_URL } from "../constants";
 
 type Props = {
   // TODO 仮置きなのでもうちょっと考える
@@ -122,9 +123,15 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
 export default QuestionPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  const env = process.env.PROJECT_ENV;
   // TODO fix
-  const API_ENDPOINT = "http://localhost:3010";
-  const response = await axios.get<Questions>(`${API_ENDPOINT}/entries`);
+  const API_ENDPOINT =
+    env === "local"
+      ? "http://localhost:3010"
+      : `${API_BASE_URL}/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
+  const response = await axios.get<Questions>(
+    `${API_ENDPOINT}/entries/?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
+  );
   const data = response.data.items.map(({ fields }) => fields);
 
   return {
