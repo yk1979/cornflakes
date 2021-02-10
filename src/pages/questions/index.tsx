@@ -2,15 +2,15 @@ import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useReducer, useState } from "react";
-import { Questions } from "../../agreed/types";
-import Button from "../components/Button";
-import Layout from "../components/Layout";
-import Table from "../components/Table";
-import TableItem from "../components/Table/TableItem";
-import { API_BASE_URL } from "../constants";
+import { Questions } from "../../../agreed/types";
+import Button from "../../components/Button";
+import Layout from "../../components/Layout";
+import Table from "../../components/Table";
+import TableItem from "../../components/Table/TableItem";
+import { API_BASE_URL } from "../../constants";
+import { scoreReducer } from "../../reducers/scoreReducer";
 
 type Props = {
-  // TODO 仮置きなのでもうちょっと考える
   data: {
     title: string;
     questions: string[];
@@ -24,25 +24,10 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
   const currentData = data[dataIndex];
 
   const initialScores = data.map((d) => ({
-    category: d.title,
+    title: d.title,
     score: d.questions.map(() => 0),
   }));
-  const reducer: React.Reducer<
-    {
-      category: string;
-      score: number[];
-    }[],
-    { payload: number[] }
-  > = (state, action) => {
-    const [targetCategoryIndex, targetTextIndex] = action.payload;
-    const nextState = [...state];
-    // ターゲットのスコアは0か1のみなので、現在のスコア-1の絶対値は必ず現在のスコアの反転になる
-    nextState[targetCategoryIndex].score[targetTextIndex] = Math.abs(
-      nextState[targetCategoryIndex].score[targetTextIndex] - 1
-    );
-    return nextState;
-  };
-  const [state, dispatch] = useReducer(reducer, initialScores);
+  const [state, dispatch] = useReducer(scoreReducer, initialScores);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const payload = e.target.id.split("-").map((t) => Number(t));
