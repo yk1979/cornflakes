@@ -2,13 +2,13 @@ import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useReducer, useState } from "react";
-import { Questions } from "../../../agreed/types";
-import Button from "../../components/Button";
-import Layout from "../../components/Layout";
-import Table from "../../components/Table";
-import TableItem from "../../components/Table/TableItem";
-import { API_BASE_URL } from "../../constants";
-import { scoreReducer } from "../../reducers/scoreReducer";
+import { Questions } from "@/agreed/types";
+import Button from "@/src/components/Button";
+import Layout from "@/src/components/Layout";
+import Table from "@/src/components/Table";
+import TableItem from "@/src/components/Table/TableItem";
+import { API_BASE_URL } from "@/src/constants";
+import { scoreReducer } from "@/src/reducers/scoreReducer";
 
 type Props = {
   data: {

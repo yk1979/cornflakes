@@ -1,11 +1,11 @@
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import React from "react";
-import { SkillData } from "../../agreed/types";
-import { Graph } from "../components/Graph";
-import Layout from "../components/Layout";
-import Table from "../components/Table";
-import TableItem from "../components/Table/TableItem";
+import { SkillData } from "@/agreed/types";
+import { Graph } from "@/src/components/Graph";
+import Layout from "@/src/components/Layout";
+import Table from "@/src/components/Table";
+import TableItem from "@/src/components/Table/TableItem";
 
 type Props = {
   name: string;
