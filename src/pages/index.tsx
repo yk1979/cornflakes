@@ -22,9 +22,9 @@ const IndexPage: NextPage<Props> = ({ user }) => (
       }))}
     />
     <Table headers={["category", "description", "your score"]}>
-      {user.skills.flatMap((skill, i) =>
-        skill.contents.map(({ text, score }) => (
-          <tr key={i}>
+      {user.skills.flatMap((skill) =>
+        skill.contents.map(({ id, text, score }) => (
+          <tr key={id}>
             <TableItem className="px-6 py-4 whitespace-nowrap">
               {skill.label}
             </TableItem>
