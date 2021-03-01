@@ -1,5 +1,5 @@
 import { APIDef, GET, ResponseDef, Success200 } from "@agreed/typed";
-import { SkillData } from "../types";
+import { User } from "../types";
 
 type Api = APIDef<
   GET, // HTTP method
@@ -8,7 +8,7 @@ type Api = APIDef<
   Record<string, unknown>, // request query
   undefined, // response body
   Record<string, unknown>, // response header
-  ResponseDef<Success200, SkillData>
+  ResponseDef<Success200, User>
 >;
 
 export const api: Api = {
@@ -30,274 +30,265 @@ export const api: Api = {
       name: "pchan",
       skills: [
         {
-          category: "HTML/CSS",
+          label: "HTML",
           summary: 100,
-          detail: [
-            { text: "規約に従ってデザインデータを正しく再現できる", score: 1 },
-            { text: "コーディング規約を作ることができる", score: 1 },
+          contents: [
             {
+              id: "h-1",
               text:
-                "Lighthouseの結果を見て適切にマークアップの問題点を改善できる",
+                "HTMLのタグの意味を理解してセマンティックなマークアップができる",
               score: 1,
             },
             {
-              text:
-                "DOM王（※必要最低限のDOMでデザイン通りのマークアップができる人）になれる",
-              score: 1,
-            },
-            { text: "レスポンシブなマークアップができる", score: 1 },
-            { text: "クロスブラウザ対応ができる", score: 1 },
-          ],
-        },
-        {
-          category: "JS/TS",
-          summary: 90,
-          detail: [
-            {
-              text: "Object や Array を活用してデータを表現したり操作できる",
+              id: "h-2",
+              text: "data-アトリビュートをいつどういう時に使うか理解している",
               score: 1,
             },
             {
+              id: "h-3",
               text:
-                "String.prototype.includes Array.prototype.reduce RegExp.prototype.test などの基本的なメソッドを使える",
+                "<script>, <script async>, <script defer> のそれぞれの動きを説明できる",
               score: 1,
             },
             {
+              id: "h-4",
               text:
-                "tc39 proposal で ディスカッションされている実験的なシンタックスがあることをしっている",
+                "親要素あるいは子要素が限定されるタグを4セット以上列挙できる（<ul> と <li> で1セット）",
               score: 1,
             },
             {
+              id: "h-5",
+              text: "img タグにおける alt 属性の重要性を説明できる",
+              score: 1,
+            },
+            { id: "h-6", text: "form を適切にマークアップできる", score: 1 },
+            {
+              id: "h-7",
               text:
-                "document.querySelector や document.createElement など DOM に関する関数を使える",
+                "title, description / ogp 関連タグの役割を理解して意味のあるが指定できる",
               score: 1,
             },
             {
+              id: "h-8",
               text:
-                "devtools を活用して 時間のかかっている関数 や 呼び出し頻度の高い関数を見つけることができる",
+                "要素の数が変わる・トルツメ・中身が空になるといったパターンを考慮してマークアップできるか",
               score: 1,
-            },
-            {
-              text: ".tsconfigの内容を理解し、自分で書くことができる",
-              score: 0,
-            },
-            { text: "strict modeでTypeScriptが書ける", score: 1 },
-            {
-              text: "TypeScript で 外部ライブラリに型を付けることができる",
-              score: 0,
-            },
-            {
-              text:
-                "外部ライブラリを用いたTypeScriptが書ける（ex. ReactやStyled Components等を組み合わせて使えるか）",
-              score: 1,
-            },
-            {
-              text:
-                "service workerを使ってオフラインでもキャッシュを用いてページをユーザーに見せることができる",
-              score: 0,
             },
           ],
         },
         {
-          category: "React",
-          summary: 91,
-          detail: [
-            {
-              text:
-                "React をつかって 任意の Presentational Component を実装できる",
-              score: 1,
-            },
-            { text: "BFFのserviceを書いたことがある", score: 1 },
-            { text: "Next.jsでページを追加できる", score: 1 },
-            {
-              text: "agreed-typed で新しいレスポンスを追加したことがある",
-              score: 1,
-            },
-            {
-              text:
-                "ロードバランサーからのヘルスチェックをどのように行っているか知っている ",
-              score: 0,
-            },
-            { text: "next.config.jsでwebpackの設定を修正できる", score: 0 },
-            {
-              text:
-                "Express の middleware を作ることができる （作ったことがある）",
-              score: 0,
-            },
-            {
-              text:
-                "Express の Error Middleware を作ることができる （作ったことがある）",
-              score: 0,
-            },
-            {
-              text: "styled-componentsでコンポーネントをスタイリングできる",
-              score: 1,
-            },
-            {
-              text:
-                "getInitialPropsでserviceを呼び出して、受け取ったデータを適切にページに渡すことができる",
-              score: 1,
-            },
-            {
-              text: "_app.tsxと_document.tsxのそれぞれの役割を説明できる",
-              score: 0,
-            },
-          ],
-        },
-        {
-          category: "Node.js",
-          summary: 83,
-          detail: [
-            {
-              text: "npm を活用して サードパーティのライブラリを利用できる",
-              score: 1,
-            },
-            { text: "npm scripts を自分で追加できる", score: 1 },
-            {
-              text:
-                "npm / yarn を活用して outdated なモジュールを調べることができる",
-              score: 1,
-            },
-            {
-              text: "outdated な モジュールを調べた上で 更新したことがある",
-              score: 1,
-            },
-            {
-              text:
-                "node modules配下のライブラリを参照してトラブルシューティングができる",
-              score: 0,
-            },
-            {
-              text: "npm publishできる（その際先輩の顔を全世界公開しない）",
-              score: 0,
-            },
-          ],
-        },
-        {
-          category: "AMP",
+          label: "CSS",
           summary: 100,
-          detail: [
-            { text: "amp validなコードが書ける", score: 1 },
+          contents: [
             {
-              text: "amp component を利用してコンポーネントが実装できる",
-              score: 1,
-            },
-            {
+              id: "c-1",
               text:
-                "amp component のもつデフォルトのスタイルを上書きしてデザインを再現できる",
+                "Boxモデルについて説明できる （* { box-sizing: border-box } を指定する理由を説明できる）",
               score: 1,
             },
-            { text: "amp-stateを使って動的な処理を実装できる", score: 1 },
-            { text: "amp component に型付けができる", score: 0 },
             {
-              text: "amp valid なコードを書くことによる恩恵を説明できる",
-              score: 0,
+              id: "c-2",
+              text:
+                "状態が変わる（活性/非活性・hover/focus・テキストの長さ・画像のアスペクト比など）ことを考慮したスタイルがつけられる",
+              score: 1,
+            },
+            {
+              id: "c-3",
+              text: "要素を親要素の上下左右中央にレイアウトする方法を3つ言える",
+              score: 1,
+            },
+            {
+              id: "c-4",
+              text: "reset.css or normalize.css がなんで必要なの？が説明できる",
+              score: 1,
+            },
+            {
+              id: "c-5",
+              text:
+                "空 div や br タグを使うことなくマークアップできる (margin や position を適切に使える）",
+              score: 1,
+            },
+            { id: "c-6", text: "flexbox で要素を並べることができる", score: 1 },
+            { id: "c-7", text: "クロスブラウザ対応ができる", score: 1 },
+            {
+              id: "c-8",
+              text:
+                "div.primary-nav.active > a.link と a#link のどちらが詳細度が高いかわかる",
+              score: 1,
+            },
+            {
+              id: "c-9",
+              text: "CSS設計手法（BEM/OOCSS/FLOCSSなど）のどれか一つでも分かる",
+              score: 1,
+            },
+            {
+              id: "c-10",
+              text:
+                'font-familiy: arial, Segoe UI Symbol, Hiragino Sans, sans-serif"; の指定がある時 MacOS10系で日本語表示にどのフォントが使用されるかわかる',
+              score: 1,
+            },
+            {
+              id: "c-11",
+              text: "メディアクエリを使用してレスポンシブなスタイルが組める",
+              score: 1,
             },
           ],
         },
         {
-          category: "CI/CD",
-          summary: 75,
-          detail: [
-            { text: "CI /CDのタスクの内容を書き換えたことがある", score: 0 },
-            {
-              text:
-                "CI /CDに新規のdocker imageを使ったタスクを追加することができる",
-              score: 0,
-            },
-            {
-              text:
-                "CI /CDがfailした時に、原因を突き止めて解決することができる",
-              score: 0,
-            },
-            {
-              text:
-                "reg-suitによるVRT結果を確認して必要な修正を行うことができる",
-              score: 1,
-            },
-          ],
-        },
-        {
-          category: "Test",
+          label: "OS/CLI",
           summary: 100,
-          detail: [
+          contents: [
+            { id: "o-1", text: "PATHを通せる", score: 1 },
+            { id: "o-2", text: "環境変数を追加できる", score: 1 },
             {
-              text:
-                "Jest を使って utils 関数など なにかしらのテストコードを書いたことがある",
+              id: "o-3",
+              text: "任意のディレクトリにプレーンテキストファイルを作成できる",
               score: 1,
             },
-            { text: "coverageを見ることができる", score: 1 },
             {
+              id: "o-4",
+              text: "shellを何かしらカスタマイズしたことがある",
+              score: 1,
+            },
+            { id: "o-5", text: "任意のファイルのコピーを作成できる", score: 1 },
+            {
+              id: "o-6",
+              text: "自作のスクリプトファイルに実行権限を付与できる",
+              score: 1,
+            },
+            {
+              id: "o-7",
               text:
-                "必要なパターンを全て網羅してStorybookに追加することができる",
+                "コマンドラインに表示されるdrwxr-xr-x が何を表しているかわかる",
+              score: 1,
+            },
+            { id: "o-8", text: "相対パス、絶対パスの違いがわかる", score: 1 },
+            {
+              id: "o-9",
+              text: "自分が実行しているコマンドのパスを調べられる",
+              score: 1,
+            },
+            {
+              id: "o-10",
+              text:
+                "ローカルサーバーから取得したHTMLに書かれたパスの画像ファイルを自分のPCから見つけられる",
               score: 1,
             },
           ],
         },
         {
-          category: "Backend",
-          summary: 60,
-          detail: [
-            {
-              text: "バックエンド側のRuby on Railsを書き換えたことがある",
-              score: 0,
-            },
-            {
-              text:
-                "GAE（Go言語）を使ったツールもしくはサービスを書き換えることができる",
-              score: 0,
-            },
-            {
-              text:
-                "APIをコールして必要な情報が正しく返ってきているか確認できる",
-              score: 1,
-            },
-            {
-              text: "cosme-apiを手元で実行してローカルでBFFと接続できる",
-              score: 0,
-            },
-            { text: "cosmeのmySQLにSQLを発行できる", score: 0 },
-          ],
-        },
-        {
-          category: "GCP",
-          summary: 60,
-          detail: [
-            {
-              text: "GCPコンソールで任意のPJのログを見ることができる",
-              score: 1,
-            },
-            {
-              text:
-                "cosme-webのk8sコンテナの最新のリビジョンが起動しているか確認できる",
-              score: 0,
-            },
-            {
-              text: "任意のGCSバケットの中身をダウンロード/アップロードできる",
-              score: 0,
-            },
-            { text: "k8sコンテナのyamlを適切に修正できる", score: 0 },
-            { text: "cloudCDNのキャッシュを手動でパージできる", score: 0 },
-          ],
-        },
-        {
-          category: "SEO",
+          label: "TypeScript",
           summary: 100,
-          detail: [
-            { text: "amp-gtmで、GoogleAnalyticsに情報を送信できる", score: 0 },
+          contents: [
             {
-              text: "amp-analyticsでadobe-analyticsに情報を送信できる",
-              score: 0,
-            },
-            {
-              text: "送信されたログ情報をGAもしくはAAコンソール上で確認できる",
+              id: "t-1",
+              text: "TypeScript で 任意の Object の型を書いたことがある",
               score: 1,
             },
             {
-              text: "lighthouseの結果を見て、SEOの点数を上げることができる",
+              id: "t-2",
+              text:
+                "TypeScript で 任意の React.FC の Props 型を定義したことがある",
               score: 1,
             },
-            { text: "SearchConsoleの情報を見て必要な修正ができる", score: 1 },
+            {
+              id: "t-3",
+              text: "TypeScript で 任意の関数に型を付けたことがある",
+              score: 1,
+            },
+            {
+              id: "t-4",
+              text: "TypeScript の Utility Type を使ったことがある，わかる",
+              score: 1,
+            },
+            {
+              id: "t-5",
+              text: "TypeScript の Conditional Type を使ったことがある，わかる",
+              score: 1,
+            },
+            {
+              id: "t-6",
+              text:
+                "@types/react が提供している React.HTMLProps 型 を活用したことがある",
+              score: 1,
+            },
+            {
+              id: "t-7",
+              text:
+                "TypeScript の interface などを用いて関数にオーバーロード型を定義したことがある",
+              score: 1,
+            },
+            {
+              id: "t-8",
+              text:
+                "TypeScriptにおけるType Annotation (通常の型付けのこと) と Type Assertion (as のことね) を使い分けることができる",
+              score: 1,
+            },
+            {
+              id: "t-9",
+              text: "TypeScript のkeyof, Mapped Typeを使ったことがある",
+              score: 1,
+            },
+            {
+              id: "t-10",
+              text:
+                "TypeScript: interface と type alias の使い分けを理解している",
+              score: 1,
+            },
+          ],
+        },
+        {
+          label: "JavaScript",
+          summary: 100,
+          contents: [
+            { id: "j-1", text: "== と === の違いがわかる", score: 1 },
+            {
+              id: "j-2",
+              text: "現行の仕様に追従したJavascriptを意識して書くことができる",
+              score: 1,
+            },
+            {
+              id: "j-3",
+              text: "eslintといった静的解析ツールを用いることができる",
+              score: 1,
+            },
+            { id: "j-4", text: "consoleで実行内容を出力できる", score: 1 },
+            { id: "j-5", text: "DOMが何かを理解している", score: 1 },
+            { id: "j-6", text: "オブジェクト、配列を作成できる", score: 1 },
+            { id: "j-7", text: "イベントを登録できる、削除できる", score: 1 },
+            {
+              id: "j-8",
+              text: "MDNのJavascriptドキュメントを参照できる",
+              score: 1,
+            },
+            {
+              id: "j-9",
+              text:
+                "tc39でプロポーザルが出されている機能を参照することができる",
+              score: 1,
+            },
+            {
+              id: "j-10",
+              text: "破壊的なメソッドとはどんなものか説明できる",
+              score: 1,
+            },
+            {
+              id: "j-11",
+              text:
+                "Array.forEach(), Array.map(), Array.filter(), Array.reduce()の違いがそれぞれわかる",
+              score: 1,
+            },
+            {
+              id: "j-12",
+              text: "Promise.all()をどういう時に使うか説明できる",
+              score: 1,
+            },
+            {
+              id: "j-13",
+              text:
+                "Promise.all(), Promise.race(), Promise.allSettled(), Promise.any()の違いがそれぞれわかる",
+              score: 1,
+            },
           ],
         },
       ],

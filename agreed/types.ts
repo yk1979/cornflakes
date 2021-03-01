@@ -1,12 +1,12 @@
-// 仮
-export type SkillData = {
+export type User = {
   name: string;
   skills: {
-    category: string;
+    label: string;
     summary: number;
-    detail: {
+    contents: {
+      id: string;
       text: string;
-      score: 0 | 1;
+      score: number;
     }[];
   }[];
 };

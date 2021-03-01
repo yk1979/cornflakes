@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import React from "react";
-import { SkillData } from "@/agreed/types";
+import { User } from "@/agreed/types";
 import { Graph } from "@/src/components/Graph";
 import Layout from "@/src/components/Layout";
 import Table from "@/src/components/Table";
@@ -44,20 +44,20 @@ export default IndexPage;
 export const getServerSideProps: GetServerSideProps = async () => {
   // TODO fix
   const API_ENDPOINT = "http://localhost:3010";
-  const response = await axios.get<SkillData>(`${API_ENDPOINT}/pchan`);
+  const response = await axios.get<User>(`${API_ENDPOINT}/pchan`);
   const data = response.data;
 
   // TODO エラー処理追加
 
   const graphData = data.skills.map((skill) => ({
-    label: skill.category,
+    label: skill.label,
     score: skill.summary,
   }));
 
   // TODO APIの戻り値を考え直した方がいいかも？
   const tableData = data.skills.flatMap((skill) =>
-    skill.detail.map(({ text, score }) => ({
-      category: skill.category,
+    skill.contents.map(({ text, score }) => ({
+      category: skill.label,
       text,
       score,
     }))
