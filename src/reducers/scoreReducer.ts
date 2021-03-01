@@ -1,6 +1,6 @@
 export const scoreReducer: React.Reducer<
   {
-    title: string;
+    label: string;
     score: number[];
   }[],
   { payload: number[] }

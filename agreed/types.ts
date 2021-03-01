@@ -11,12 +11,10 @@ export type SkillData = {
   }[];
 };
 
-// 仮
 export type Questions = {
-  items: {
-    fields: {
-      title: string;
-      questions: string[];
-    };
+  label: string;
+  contents: {
+    id: string;
+    text: string;
   }[];
-};
+}[];

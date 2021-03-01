@@ -2,30 +2,27 @@ import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useReducer, useState } from "react";
-import { Questions } from "@/agreed/types";
 import Button from "@/src/components/Button";
 import Layout from "@/src/components/Layout";
 import Table from "@/src/components/Table";
 import TableItem from "@/src/components/Table/TableItem";
 import { API_BASE_URL } from "@/src/constants";
 import { scoreReducer } from "@/src/reducers/scoreReducer";
+import { Questions } from "@/agreed/types";
 
 type Props = {
-  data: {
-    title: string;
-    questions: string[];
-  }[];
+  questions: Questions;
 };
 
-const QuestionPage: NextPage<Props> = ({ data }) => {
+const QuestionPage: NextPage<Props> = ({ questions }) => {
   const router = useRouter();
 
-  const [dataIndex, setDataIndex] = useState(0);
-  const currentData = data[dataIndex];
+  const [qIndex, setQIndex] = useState(0);
+  const currentQBlock = questions[qIndex];
 
-  const initialScores = data.map((d) => ({
-    title: d.title,
-    score: d.questions.map(() => 0),
+  const initialScores = questions.map((q) => ({
+    label: q.label,
+    score: q.contents.map(() => 0),
   }));
   const [state, dispatch] = useReducer(scoreReducer, initialScores);
 
@@ -42,7 +39,7 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
     // } else {
     //   window.history.back();
     // }
-    setDataIndex(dataIndex + n);
+    setQIndex(qIndex + n);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -56,20 +53,17 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
       <h1 className="text-2xl font-semibold">スキルチェック</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <Table headers={["category", "description", "check"]}>
-          {currentData.questions.map((item, i) => (
+          {currentQBlock.contents.map(({ id, text }, i) => (
             <tr key={i}>
-              <TableItem className="px-6 py-4">{currentData.title}</TableItem>
-              <TableItem className="px-6 py-4">{item}</TableItem>
+              <TableItem className="px-6 py-4">{currentQBlock.label}</TableItem>
+              <TableItem className="px-6 py-4">{text}</TableItem>
               <TableItem className="text-sm text-gray-500 text-center">
-                <label
-                  htmlFor={`${dataIndex}-${i}`}
-                  className="block p-4 cursor-pointer"
-                >
+                <label htmlFor={id} className="block p-4 cursor-pointer">
                   <input
                     className="w-5 h-5 rounded cursor-pointer focus:ring-0"
                     type="checkbox"
-                    id={`${dataIndex}-${i}`}
-                    checked={state[dataIndex].score[i] === 1}
+                    id={id}
+                    checked={state[qIndex].score[i] === 1}
                     onChange={handleInputChange}
                   />
                 </label>
@@ -77,7 +71,7 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
             </tr>
           ))}
         </Table>
-        {dataIndex < data.length - 1 && (
+        {qIndex < questions.length - 1 && (
           <Button
             theme="primary"
             type="button"
@@ -86,7 +80,7 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
             次へ
           </Button>
         )}
-        {dataIndex !== 0 && (
+        {qIndex !== 0 && (
           <Button
             theme="sub"
             type="button"
@@ -95,7 +89,7 @@ const QuestionPage: NextPage<Props> = ({ data }) => {
             戻る
           </Button>
         )}
-        {dataIndex + 1 === data.length && (
+        {qIndex + 1 === questions.length && (
           <Button theme="primary" type="submit">
             送信
           </Button>
@@ -117,11 +111,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const response = await axios.get<Questions>(
     `${API_ENDPOINT}/entries/?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
   );
-  const data = response.data.items.map(({ fields }) => fields);
+  const questions = response.data;
 
   return {
     props: {
-      data,
+      questions,
     },
   };
 };
