@@ -20,14 +20,16 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
   const [qIndex, setQIndex] = useState(0);
   const currentQBlock = questions[qIndex];
 
-  const initialScores = questions.map((q) => ({
-    label: q.label,
-    score: q.contents.map(() => 0),
-  }));
+  const initialScores = questions.flatMap((q) =>
+    q.contents.map((c) => ({
+      id: c.id,
+      score: 0,
+    }))
+  );
   const [state, dispatch] = useReducer(scoreReducer, initialScores);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const payload = e.target.id.split("-").map((t) => Number(t));
+    const payload = { id: e.target.id, score: e.target.checked ? 1 : 0 };
     dispatch({ payload });
   };
 
@@ -63,7 +65,7 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
                     className="w-5 h-5 rounded cursor-pointer focus:ring-0"
                     type="checkbox"
                     id={id}
-                    checked={state[qIndex].score[i] === 1}
+                    checked={state.find((item) => item.id === id)?.score === 1}
                     onChange={handleInputChange}
                   />
                 </label>

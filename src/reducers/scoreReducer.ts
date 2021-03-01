@@ -1,15 +1,21 @@
 export const scoreReducer: React.Reducer<
   {
-    label: string;
-    score: number[];
+    id: string;
+    score: number;
   }[],
-  { payload: number[] }
-> = (state, action) => {
-  const [targetCategoryIndex, targetTextIndex] = action.payload;
-  const nextState = [...state];
-  // ターゲットのスコアは0か1のみなので、現在のスコア-1の絶対値は必ず現在のスコアの反転になる
-  nextState[targetCategoryIndex].score[targetTextIndex] = Math.abs(
-    nextState[targetCategoryIndex].score[targetTextIndex] - 1
-  );
-  return nextState;
-};
+  {
+    payload: {
+      id: string;
+    };
+  }
+> = (state, { payload }) =>
+  state.map((item) => {
+    if (item.id === payload.id) {
+      return {
+        ...item,
+        // ターゲットのスコアは0か1のみなので、現在のスコア-1の絶対値は必ず現在のスコアの反転になる
+        score: Math.abs(item.score - 1),
+      };
+    }
+    return item;
+  });
