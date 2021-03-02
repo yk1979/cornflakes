@@ -4,7 +4,6 @@
   "description": "",
   "scripts": {
     "dev": "PROJECT_ENV=local run-p agreed next",
-    "dev:api": "run-p agreed next",
     "agreed": "agreed-server --path agreed/index.ts --port 3010",
     "next": "next",
     "build": "next build",

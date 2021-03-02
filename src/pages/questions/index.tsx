@@ -6,7 +6,6 @@ import Button from "@/src/components/Button";
 import Layout from "@/src/components/Layout";
 import Table from "@/src/components/Table";
 import TableItem from "@/src/components/Table/TableItem";
-import { API_BASE_URL } from "@/src/constants";
 import { scoreReducer } from "@/src/reducers/scoreReducer";
 import { Questions } from "@/agreed/types";
 
@@ -104,15 +103,9 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
 export default QuestionPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const env = process.env.PROJECT_ENV;
   // TODO fix
-  const API_ENDPOINT =
-    env === "local"
-      ? "http://localhost:3010"
-      : `${API_BASE_URL}/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
-  const response = await axios.get<Questions>(
-    `${API_ENDPOINT}/entries/?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
-  );
+  const API_ENDPOINT = "http://localhost:3010";
+  const response = await axios.get<Questions>(`${API_ENDPOINT}/entries/`);
   const questions = response.data;
 
   return {
