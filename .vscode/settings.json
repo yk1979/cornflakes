@@ -2,10 +2,15 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "cSpell.words": [
     "chartjs",
     "csrf",
     "pchan",
+    "postgres",
+    "postgresql",
     "semibold",
     "tailwindcss"
   ]

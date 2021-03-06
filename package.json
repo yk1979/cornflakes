@@ -10,11 +10,13 @@
     "start": "next start",
     "lint": "eslint --ext *.ts,*.tsx --cache",
     "fix": "eslint --ext *.ts,*.tsx --fix --cache",
-    "format": "prettier --write '**/*.(ts|tsx)'"
+    "format": "prettier --write '**/*.(ts|tsx)'",
+    "migrate": "prisma migrate dev --preview-feature && prisma generate"
   },
   "license": "ISC",
   "homepage": "https://github.com/yk1979/cornflakes#readme",
   "dependencies": {
+    "@prisma/client": "2.17.0",
     "axios": "0.21.1",
     "chart.js": "2.9.4",
     "dotenv": "8.2.0",

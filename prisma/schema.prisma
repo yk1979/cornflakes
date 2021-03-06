@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Skill {
+  id     String        @id
+  text   String
+  score  Int
+  parent SkillSummary? @relation(fields: [label], references: [label])
+  label  String?
+}
+
+model SkillSummary {
+  label    String  @id
+  summary  Int
+  contents Skill[]
+  user     User?   @relation(fields: [userId], references: [id])
+  userId   Int?
+}
+
+model User {
+  id     Int            @id
+  name   String
+  skills SkillSummary[]
+}
