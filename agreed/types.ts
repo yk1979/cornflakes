@@ -1,14 +1,18 @@
+type Skill = {
+  id: string;
+  text: string;
+  score: number;
+};
+
+export type SkillSummary = {
+  label: string;
+  summary: number;
+  contents: Skill[];
+};
+
 export type User = {
   name: string;
-  skills: {
-    label: string;
-    summary: number;
-    contents: {
-      id: string;
-      text: string;
-      score: number;
-    }[];
-  }[];
+  skills: SkillSummary[];
 };
 
 export type Questions = {

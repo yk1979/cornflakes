@@ -7,7 +7,7 @@ import Layout from "@/src/components/Layout";
 import Table from "@/src/components/Table";
 import TableItem from "@/src/components/Table/TableItem";
 import { scoreReducer } from "@/src/reducers/scoreReducer";
-import { Questions } from "@/agreed/types";
+import { Questions, SkillSummary } from "@/agreed/types";
 
 type Props = {
   questions: Questions;
@@ -21,8 +21,9 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
 
   const initialScores = questions.flatMap((q) =>
     q.contents.map((c) => ({
-      id: c.id,
+      ...c,
       score: 0,
+      label: q.label,
     }))
   );
   const [state, dispatch] = useReducer(scoreReducer, initialScores);
@@ -43,10 +44,44 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
     setQIndex(qIndex + n);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO 中身の実装
-    router.push("/");
+    const skillSummary: SkillSummary[] = state.reduce<SkillSummary[]>(
+      (res, item) => {
+        const target = res.findIndex((v) => v.label === item.label);
+        if (target < 0) {
+          res.push({
+            label: item.label,
+            summary: item.score,
+            contents: [
+              {
+                id: item.id,
+                score: item.score,
+                text: item.text,
+              },
+            ],
+          });
+          return res;
+        }
+        res[target].summary += item.score;
+        res[target].contents.push({
+          id: item.id,
+          score: item.score,
+          text: item.text,
+        });
+        return res;
+      },
+      []
+    );
+
+    // TODO fix
+    await fetch("http://localhost:3000/api/sample", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(skillSummary),
+    });
+
+    // router.push("/");
   };
 
   return (

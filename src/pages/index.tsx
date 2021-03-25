@@ -49,14 +49,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const response = await axios.get<User>(`${API_ENDPOINT}/pchan`);
   const user = response.data;
 
-  // TODO fix localhost
-  const res = await fetch("http://localhost:3000/api/sample");
-  const data = await res.json();
-  console.log(
-    "sample logs sample logs sample logs sample logs sample logs sample logs sample logs",
-    data
-  );
-
   // TODO エラー処理追加
 
   return {
