@@ -16,9 +16,7 @@ type Props = {
 const QuestionPage: NextPage<Props> = ({ questions }) => {
   const router = useRouter();
 
-  const [qIndex, setQIndex] = useState(0);
-  const currentQBlock = questions[qIndex];
-
+  const [currentLabelIndex, setCurrentLabelIndex] = useState(0);
   const initialScores = questions.flatMap((q) =>
     q.contents.map((c) => ({
       ...c,
@@ -35,13 +33,8 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
 
   const handleChangeQuestions = (type: "prev" | "next") => {
     const n = type === "prev" ? -1 : 1;
-    // TODO ブラウザの戻る/進むイベントを検知していい感じにしたい（下の処理じゃダメだった）
-    // if (n > 0) {
-    //   window.history.pushState(null, String(dataIndex + n), "/question");
-    // } else {
-    //   window.history.back();
-    // }
-    setQIndex(qIndex + n);
+    // TODO ブラウザの戻る/進むイベントを検知していい感じにしたい
+    setCurrentLabelIndex(currentLabelIndex + n);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -84,14 +77,19 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
     // router.push("/");
   };
 
+  const labels = questions.map(({ label }) => label);
+  const contents = state.filter(
+    (item) => item.label === labels[currentLabelIndex]
+  );
+
   return (
     <Layout>
       <h1 className="text-2xl font-semibold">スキルチェック</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <Table headers={["category", "description", "check"]}>
-          {currentQBlock.contents.map(({ id, text }, i) => (
-            <tr key={i}>
-              <TableItem className="px-6 py-4">{currentQBlock.label}</TableItem>
+          {contents.map(({ id, text, label }) => (
+            <tr key={id}>
+              <TableItem className="px-6 py-4">{label}</TableItem>
               <TableItem className="px-6 py-4">{text}</TableItem>
               <TableItem className="text-sm text-gray-500 text-center">
                 <label htmlFor={id} className="block p-4 cursor-pointer">
@@ -107,29 +105,31 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
             </tr>
           ))}
         </Table>
-        {qIndex < questions.length - 1 && (
-          <Button
-            theme="primary"
-            type="button"
-            onClick={() => handleChangeQuestions("next")}
-          >
-            次へ
-          </Button>
-        )}
-        {qIndex !== 0 && (
-          <Button
-            theme="sub"
-            type="button"
-            onClick={() => handleChangeQuestions("prev")}
-          >
-            戻る
-          </Button>
-        )}
-        {qIndex + 1 === questions.length && (
-          <Button theme="primary" type="submit">
-            送信
-          </Button>
-        )}
+        <div className="flex justify-center gap-8 items-center mt-6 mx-auto">
+          {currentLabelIndex !== 0 && (
+            <Button
+              theme="sub"
+              type="button"
+              onClick={() => handleChangeQuestions("prev")}
+            >
+              戻る
+            </Button>
+          )}
+          {currentLabelIndex < questions.length - 1 && (
+            <Button
+              theme="primary"
+              type="button"
+              onClick={() => handleChangeQuestions("next")}
+            >
+              次へ
+            </Button>
+          )}
+          {currentLabelIndex === questions.length - 1 && (
+            <Button theme="primary" type="submit">
+              送信
+            </Button>
+          )}
+        </div>
       </form>
     </Layout>
   );

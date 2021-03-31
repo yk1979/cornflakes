@@ -19,8 +19,6 @@ const Button: React.FC<Props> = ({
     "w-64",
     "px-8",
     "py-4",
-    "mt-6",
-    "mx-auto",
     "rounded",
     "text-lg",
     "font-bold",
