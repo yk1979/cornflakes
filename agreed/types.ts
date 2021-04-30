@@ -11,11 +11,13 @@ export type SkillSummary = {
 };
 
 export type User = {
+  uuid: string;
   name: string;
   skills: SkillSummary[];
 };
 
 export type Questions = {
+  uuid: string;
   label: string;
   contents: {
     id: string;

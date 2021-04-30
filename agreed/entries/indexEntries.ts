@@ -28,6 +28,7 @@ export const api: Api = {
     },
     body: [
       {
+        uuid: "912acaf8-0c64-4b3f-b4ba-edcfae0ef682",
         label: "HTML",
         contents: [
           {
@@ -64,6 +65,7 @@ export const api: Api = {
         ],
       },
       {
+        uuid: "618fde2a-574b-4f0c-bcd7-1125b374910d",
         label: "CSS",
         contents: [
           {
@@ -112,6 +114,7 @@ export const api: Api = {
         ],
       },
       {
+        uuid: "4d02c205-53bf-4f3e-a400-ab2f64a0f22d",
         label: "OS/CLI",
         contents: [
           { id: "o-1", text: "PATHを通せる" },
@@ -138,6 +141,7 @@ export const api: Api = {
         ],
       },
       {
+        uuid: "f2c20291-6253-4b9b-aba2-02efab054305",
         label: "TypeScript",
         contents: [
           {
@@ -185,6 +189,7 @@ export const api: Api = {
         ],
       },
       {
+        uuid: "6aec9eb7-87e5-472e-b1fd-cc5173ff7ad1",
         label: "JavaScript",
         contents: [
           { id: "j-1", text: "== と === の違いがわかる" },

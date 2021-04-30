@@ -1,23 +1,34 @@
-export const scoreReducer: React.Reducer<
-  {
+type InitialState = {
+  contents: {
+    score: number;
     id: string;
     text: string;
-    score: number;
-    label: string;
-  }[],
+  }[];
+  uuid: string;
+  label: string;
+}[];
+
+export const scoreReducer: React.Reducer<
+  InitialState,
   {
+    type: "increase" | "decrease";
     payload: {
-      id: string;
-      score: number;
+      labelId: string;
+      contentsId: string;
     };
   }
-> = (state, { payload }) =>
-  state.map((item) => {
-    if (item.id === payload.id) {
-      return {
-        ...item,
-        score: payload.score,
-      };
-    }
-    return item;
-  });
+> = (prevState, { type, payload }) => {
+  const { labelId, contentsId } = payload;
+  const num = type === "increase" ? 1 : -1;
+
+  return prevState.map((question) =>
+    question.uuid === labelId
+      ? {
+          ...question,
+          contents: question.contents.map((c) =>
+            c.id === contentsId ? { ...c, score: c.score + num } : c
+          ),
+        }
+      : question
+  );
+};
