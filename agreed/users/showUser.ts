@@ -1,5 +1,5 @@
 import { APIDef, GET, ResponseDef, Success200 } from "@agreed/typed";
-import { User } from "../types";
+import { User } from "@/src/types";
 
 type Api = APIDef<
   GET, // HTTP method
@@ -27,6 +27,7 @@ export const api: Api = {
       "x-csrf-token": "csrf-token",
     },
     body: {
+      uuid: "some uuid",
       name: "pchan",
       skills: [
         {
