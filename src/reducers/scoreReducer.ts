@@ -1,7 +1,7 @@
 type InitialState = {
   contents: {
     score: number;
-    id: string;
+    uuid: string;
     text: string;
   }[];
   uuid: string;
@@ -26,7 +26,7 @@ export const scoreReducer: React.Reducer<
       ? {
           ...question,
           contents: question.contents.map((c) =>
-            c.id === contentsId ? { ...c, score: c.score + num } : c
+            c.uuid === contentsId ? { ...c, score: c.score + num } : c
           ),
         }
       : question

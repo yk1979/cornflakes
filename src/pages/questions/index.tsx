@@ -1,4 +1,3 @@
-import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useReducer, useState } from "react";
@@ -7,7 +6,8 @@ import Layout from "@/src/components/Layout";
 import Table from "@/src/components/Table";
 import TableItem from "@/src/components/Table/TableItem";
 import { scoreReducer as reducer } from "@/src/reducers/scoreReducer";
-import { Questions } from "@/agreed/types";
+import { Questions } from "@/src/types";
+import { API_BASE_URL } from "@/src/constants";
 
 type Props = {
   questions: Questions;
@@ -43,14 +43,8 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO fix
-    const res = await fetch("http://localhost:3000/api/sample", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(score),
-    }).then((d) => d.json());
-
-    // router.push("/");
+    // TODO 実装
+    router.push("/");
   };
 
   return (
@@ -58,19 +52,18 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
       <h1 className="text-2xl font-semibold">スキルチェック</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <Table headers={["category", "description", "check"]}>
-          {currentQuestion.contents.map(({ id, text }) => (
-            <tr key={id}>
+          {currentQuestion.contents.map(({ uuid, text }) => (
+            <tr key={uuid}>
               <TableItem className="px-6 py-4">
                 {currentQuestion.label}
               </TableItem>
               <TableItem className="px-6 py-4">{text}</TableItem>
               <TableItem className="text-sm text-gray-500 text-center">
-                <label htmlFor={id} className="block p-4 cursor-pointer">
+                <label htmlFor={uuid} className="block p-4 cursor-pointer">
                   <input
                     className="w-5 h-5 rounded cursor-pointer focus:ring-0"
                     type="checkbox"
-                    id={id}
-                    // checked={state.find((item) => item.id === id)?.score === 1}
+                    id={uuid}
                     onChange={handleInputChange}
                   />
                 </label>
@@ -111,10 +104,9 @@ const QuestionPage: NextPage<Props> = ({ questions }) => {
 export default QuestionPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // TODO fix
-  const API_ENDPOINT = "http://localhost:3010";
-  const response = await axios.get<Questions>(`${API_ENDPOINT}/entries/`);
-  const questions = response.data;
+  const questions = await fetch(`${API_BASE_URL}/fetch`).then((res) =>
+    res.json()
+  );
 
   return {
     props: {

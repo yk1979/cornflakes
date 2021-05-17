@@ -20,7 +20,7 @@ export type Questions = {
   uuid: string;
   label: string;
   contents: {
-    id: string;
+    uuid: string;
     text: string;
   }[];
 }[];

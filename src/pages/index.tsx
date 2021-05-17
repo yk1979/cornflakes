@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import React from "react";
-import { User } from "@/agreed/types";
+import { User } from "@/src/types";
 import { Graph } from "@/src/components/Graph";
 import Layout from "@/src/components/Layout";
 import Table from "@/src/components/Table";
