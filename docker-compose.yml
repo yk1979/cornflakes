@@ -18,6 +18,14 @@ services:
       POSTGRES_DB: mydb
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+  prisma:
+    image: node:12-alpine
+    command: sh -c "npm install --no-save && npx prisma studio"
+    ports:
+      - "5555:5555"
+    working_dir: /app
+    volumes:
+      - ./:/app
 
 volumes:
   postgresql-data:
