@@ -32,14 +32,27 @@ export const Graph: React.FC<Props> = ({ className, data }) => (
         ],
       }}
       options={{
-        scale: {
-          pointLabels: { fontSize: 14 },
-          ticks: {
+        responsive: true,
+        scales: {
+          // chart.js v3 から scale option がなくなり scale.r が推奨になった
+          // scale option was removed in favor of options.scales.r (or any other scale id, with axis: 'r')
+          // https://www.chartjs.org/docs/latest/getting-started/v3-migration.html
+          // @ts-expect-error 2021年8月現在 @types が古くて対応していないみたい？
+          r: {
+            pointLabels: {
+              font: {
+                size: 14,
+              },
+            },
             suggestedMin: 0,
             suggestedMax: 100,
           },
         },
-        legend: { labels: { fontSize: 14 } },
+        plugins: {
+          legend: {
+            labels: { font: { size: 15 } },
+          },
+        },
       }}
     />
   </div>
