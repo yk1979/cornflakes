@@ -5,6 +5,10 @@
     {
       "groupName": "agreed",
       "packagePatterns": ["^@agreed/"]
+    },
+    {
+      "matchPackageNames": ["node.js"],
+      "allowedVersions": "<=14"
     }
   ]
 }
