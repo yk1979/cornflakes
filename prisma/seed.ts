@@ -11,8 +11,7 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
       create: [
         {
           uuid: "h-1",
-          text:
-            "HTMLのタグの意味を理解してセマンティックなマークアップができる",
+          text: "HTMLのタグの意味を理解してセマンティックなマークアップができる",
         },
         {
           uuid: "h-2",
@@ -20,25 +19,21 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
         },
         {
           uuid: "h-3",
-          text:
-            "<script>, <script async>, <script defer> のそれぞれの動きを説明できる",
+          text: "<script>, <script async>, <script defer> のそれぞれの動きを説明できる",
         },
         {
           uuid: "h-4",
-          text:
-            "親要素あるいは子要素が限定されるタグを4セット以上列挙できる（<ul> と <li> で1セット）",
+          text: "親要素あるいは子要素が限定されるタグを4セット以上列挙できる（<ul> と <li> で1セット）",
         },
         { uuid: "h-5", text: "img タグにおける alt 属性の重要性を説明できる" },
         { uuid: "h-6", text: "form を適切にマークアップできる" },
         {
           uuid: "h-7",
-          text:
-            "title, description / ogp 関連タグの役割を理解して意味のあるが指定できる",
+          text: "title, description / ogp 関連タグの役割を理解して意味のあるが指定できる",
         },
         {
           uuid: "h-8",
-          text:
-            "要素の数が変わる・トルツメ・中身が空になるといったパターンを考慮してマークアップできるか",
+          text: "要素の数が変わる・トルツメ・中身が空になるといったパターンを考慮してマークアップできるか",
         },
       ],
     },
@@ -50,13 +45,11 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
       create: [
         {
           uuid: "c-1",
-          text:
-            "Boxモデルについて説明できる （* { box-sizing: border-box } を指定する理由を説明できる）",
+          text: "Boxモデルについて説明できる （* { box-sizing: border-box } を指定する理由を説明できる）",
         },
         {
           uuid: "c-2",
-          text:
-            "状態が変わる（活性/非活性・hover/focus・テキストの長さ・画像のアスペクト比など）ことを考慮したスタイルがつけられる",
+          text: "状態が変わる（活性/非活性・hover/focus・テキストの長さ・画像のアスペクト比など）ことを考慮したスタイルがつけられる",
         },
         {
           uuid: "c-3",
@@ -68,15 +61,13 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
         },
         {
           uuid: "c-5",
-          text:
-            "空 div や br タグを使うことなくマークアップできる (margin や position を適切に使える）",
+          text: "空 div や br タグを使うことなくマークアップできる (margin や position を適切に使える）",
         },
         { uuid: "c-6", text: "flexbox で要素を並べることができる" },
         { uuid: "c-7", text: "クロスブラウザ対応ができる" },
         {
           uuid: "c-8",
-          text:
-            "div.primary-nav.active > a.link と a#link のどちらが詳細度が高いかわかる",
+          text: "div.primary-nav.active > a.link と a#link のどちらが詳細度が高いかわかる",
         },
         {
           uuid: "c-9",
@@ -84,8 +75,7 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
         },
         {
           uuid: "c-10",
-          text:
-            'font-familiy: arial, Segoe UI Symbol, Hiragino Sans, sans-serif"; の指定がある時 MacOS10系で日本語表示にどのフォントが使用されるかわかる',
+          text: 'font-familiy: arial, Segoe UI Symbol, Hiragino Sans, sans-serif"; の指定がある時 MacOS10系で日本語表示にどのフォントが使用されるかわかる',
         },
         {
           uuid: "c-11",
@@ -116,8 +106,7 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
         { uuid: "o-9", text: "自分が実行しているコマンドのパスを調べられる" },
         {
           uuid: "o-10",
-          text:
-            "ローカルサーバーから取得したHTMLに書かれたパスの画像ファイルを自分のPCから見つけられる",
+          text: "ローカルサーバーから取得したHTMLに書かれたパスの画像ファイルを自分のPCから見つけられる",
         },
       ],
     },
@@ -146,18 +135,15 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
         },
         {
           uuid: "t-6",
-          text:
-            "@types/react が提供している React.HTMLProps 型 を活用したことがある",
+          text: "@types/react が提供している React.HTMLProps 型 を活用したことがある",
         },
         {
           uuid: "t-7",
-          text:
-            "TypeScript の interface などを用いて関数にオーバーロード型を定義したことがある",
+          text: "TypeScript の interface などを用いて関数にオーバーロード型を定義したことがある",
         },
         {
           uuid: "t-8",
-          text:
-            "TypeScriptにおけるType Annotation (通常の型付けのこと) と Type Assertion (as のことね) を使い分けることができる",
+          text: "TypeScriptにおけるType Annotation (通常の型付けのこと) と Type Assertion (as のことね) を使い分けることができる",
         },
         {
           uuid: "t-9",
@@ -196,14 +182,12 @@ const questionCategoriesData: Prisma.QuestionCategoryCreateInput[] = [
         { uuid: "j-10", text: "破壊的なメソッドとはどんなものか説明できる" },
         {
           uuid: "j-11",
-          text:
-            "Array.forEach(), Array.map(), Array.filter(), Array.reduce()の違いがそれぞれわかる",
+          text: "Array.forEach(), Array.map(), Array.filter(), Array.reduce()の違いがそれぞれわかる",
         },
         { uuid: "j-12", text: "Promise.all()をどういう時に使うか説明できる" },
         {
           uuid: "j-13",
-          text:
-            "Promise.all(), Promise.race(), Promise.allSettled(), Promise.any()の違いがそれぞれわかる",
+          text: "Promise.all(), Promise.race(), Promise.allSettled(), Promise.any()の違いがそれぞれわかる",
         },
       ],
     },

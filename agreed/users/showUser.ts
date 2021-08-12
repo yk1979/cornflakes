@@ -36,8 +36,7 @@ export const api: Api = {
           contents: [
             {
               id: "h-1",
-              text:
-                "HTMLのタグの意味を理解してセマンティックなマークアップができる",
+              text: "HTMLのタグの意味を理解してセマンティックなマークアップができる",
               score: 1,
             },
             {
@@ -47,14 +46,12 @@ export const api: Api = {
             },
             {
               id: "h-3",
-              text:
-                "<script>, <script async>, <script defer> のそれぞれの動きを説明できる",
+              text: "<script>, <script async>, <script defer> のそれぞれの動きを説明できる",
               score: 1,
             },
             {
               id: "h-4",
-              text:
-                "親要素あるいは子要素が限定されるタグを4セット以上列挙できる（<ul> と <li> で1セット）",
+              text: "親要素あるいは子要素が限定されるタグを4セット以上列挙できる（<ul> と <li> で1セット）",
               score: 1,
             },
             {
@@ -65,14 +62,12 @@ export const api: Api = {
             { id: "h-6", text: "form を適切にマークアップできる", score: 1 },
             {
               id: "h-7",
-              text:
-                "title, description / ogp 関連タグの役割を理解して意味のあるが指定できる",
+              text: "title, description / ogp 関連タグの役割を理解して意味のあるが指定できる",
               score: 1,
             },
             {
               id: "h-8",
-              text:
-                "要素の数が変わる・トルツメ・中身が空になるといったパターンを考慮してマークアップできるか",
+              text: "要素の数が変わる・トルツメ・中身が空になるといったパターンを考慮してマークアップできるか",
               score: 1,
             },
           ],
@@ -83,14 +78,12 @@ export const api: Api = {
           contents: [
             {
               id: "c-1",
-              text:
-                "Boxモデルについて説明できる （* { box-sizing: border-box } を指定する理由を説明できる）",
+              text: "Boxモデルについて説明できる （* { box-sizing: border-box } を指定する理由を説明できる）",
               score: 1,
             },
             {
               id: "c-2",
-              text:
-                "状態が変わる（活性/非活性・hover/focus・テキストの長さ・画像のアスペクト比など）ことを考慮したスタイルがつけられる",
+              text: "状態が変わる（活性/非活性・hover/focus・テキストの長さ・画像のアスペクト比など）ことを考慮したスタイルがつけられる",
               score: 1,
             },
             {
@@ -105,16 +98,14 @@ export const api: Api = {
             },
             {
               id: "c-5",
-              text:
-                "空 div や br タグを使うことなくマークアップできる (margin や position を適切に使える）",
+              text: "空 div や br タグを使うことなくマークアップできる (margin や position を適切に使える）",
               score: 1,
             },
             { id: "c-6", text: "flexbox で要素を並べることができる", score: 1 },
             { id: "c-7", text: "クロスブラウザ対応ができる", score: 1 },
             {
               id: "c-8",
-              text:
-                "div.primary-nav.active > a.link と a#link のどちらが詳細度が高いかわかる",
+              text: "div.primary-nav.active > a.link と a#link のどちらが詳細度が高いかわかる",
               score: 1,
             },
             {
@@ -124,8 +115,7 @@ export const api: Api = {
             },
             {
               id: "c-10",
-              text:
-                'font-familiy: arial, Segoe UI Symbol, Hiragino Sans, sans-serif"; の指定がある時 MacOS10系で日本語表示にどのフォントが使用されるかわかる',
+              text: 'font-familiy: arial, Segoe UI Symbol, Hiragino Sans, sans-serif"; の指定がある時 MacOS10系で日本語表示にどのフォントが使用されるかわかる',
               score: 1,
             },
             {
@@ -159,8 +149,7 @@ export const api: Api = {
             },
             {
               id: "o-7",
-              text:
-                "コマンドラインに表示されるdrwxr-xr-x が何を表しているかわかる",
+              text: "コマンドラインに表示されるdrwxr-xr-x が何を表しているかわかる",
               score: 1,
             },
             { id: "o-8", text: "相対パス、絶対パスの違いがわかる", score: 1 },
@@ -171,8 +160,7 @@ export const api: Api = {
             },
             {
               id: "o-10",
-              text:
-                "ローカルサーバーから取得したHTMLに書かれたパスの画像ファイルを自分のPCから見つけられる",
+              text: "ローカルサーバーから取得したHTMLに書かれたパスの画像ファイルを自分のPCから見つけられる",
               score: 1,
             },
           ],
@@ -188,8 +176,7 @@ export const api: Api = {
             },
             {
               id: "t-2",
-              text:
-                "TypeScript で 任意の React.FC の Props 型を定義したことがある",
+              text: "TypeScript で 任意の React.FC の Props 型を定義したことがある",
               score: 1,
             },
             {
@@ -209,20 +196,17 @@ export const api: Api = {
             },
             {
               id: "t-6",
-              text:
-                "@types/react が提供している React.HTMLProps 型 を活用したことがある",
+              text: "@types/react が提供している React.HTMLProps 型 を活用したことがある",
               score: 1,
             },
             {
               id: "t-7",
-              text:
-                "TypeScript の interface などを用いて関数にオーバーロード型を定義したことがある",
+              text: "TypeScript の interface などを用いて関数にオーバーロード型を定義したことがある",
               score: 1,
             },
             {
               id: "t-8",
-              text:
-                "TypeScriptにおけるType Annotation (通常の型付けのこと) と Type Assertion (as のことね) を使い分けることができる",
+              text: "TypeScriptにおけるType Annotation (通常の型付けのこと) と Type Assertion (as のことね) を使い分けることができる",
               score: 1,
             },
             {
@@ -232,8 +216,7 @@ export const api: Api = {
             },
             {
               id: "t-10",
-              text:
-                "TypeScript: interface と type alias の使い分けを理解している",
+              text: "TypeScript: interface と type alias の使い分けを理解している",
               score: 1,
             },
           ],
@@ -264,8 +247,7 @@ export const api: Api = {
             },
             {
               id: "j-9",
-              text:
-                "tc39でプロポーザルが出されている機能を参照することができる",
+              text: "tc39でプロポーザルが出されている機能を参照することができる",
               score: 1,
             },
             {
@@ -275,8 +257,7 @@ export const api: Api = {
             },
             {
               id: "j-11",
-              text:
-                "Array.forEach(), Array.map(), Array.filter(), Array.reduce()の違いがそれぞれわかる",
+              text: "Array.forEach(), Array.map(), Array.filter(), Array.reduce()の違いがそれぞれわかる",
               score: 1,
             },
             {
@@ -286,8 +267,7 @@ export const api: Api = {
             },
             {
               id: "j-13",
-              text:
-                "Promise.all(), Promise.race(), Promise.allSettled(), Promise.any()の違いがそれぞれわかる",
+              text: "Promise.all(), Promise.race(), Promise.allSettled(), Promise.any()の違いがそれぞれわかる",
               score: 1,
             },
           ],
