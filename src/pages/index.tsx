@@ -15,7 +15,7 @@ const IndexPage: NextPage<Props> = ({ user }) => (
   <Layout>
     <h1 className="text-2xl font-semibold">つよさをみる（{user.name}）</h1>
     <Graph
-      className="mt-6"
+      className="mt-6 p-4"
       data={user.skills.map((skill) => ({
         label: skill.label,
         score: skill.summary,
